@@ -6,6 +6,10 @@ export interface ITaskState {
 	endTime?: Date
 }
 
+export interface ITaskCardProps {
+	task: ITaskState
+}
+
 export interface ITaskProps {
 	setTasks: React.Dispatch<React.SetStateAction<ITaskState[]>>
 	tasks: ITaskState[]

@@ -17,13 +17,13 @@ function App() {
 	}
 
 	return (
-		<main className=' py-2 bg-gray-800 text-white w-full'>
-			<div className='flex flex-row justify-center items-center m-3'>
+		<main className=' bg-gray-800 text-white w-full h-screen overflow-hidden'>
+			<header className='flex flex-row justify-center items-center gap-3 w-full'>
 				<input
 					type='text'
 					placeholder='Add New Task'
 					value={title}
-					className='border-2 border-gray-400 rounded-md p-2 w-1/2 mx-auto my-5 text-black'
+					className='border-2 border-gray-400 rounded-md p-2 w-1/2  my-5 text-black first-letter:uppercase font-bold text-xl'
 					onChange={(e) => setTitle(e.target.value)}
 				/>
 				<button
@@ -32,8 +32,8 @@ function App() {
 				>
 					Add Task
 				</button>
-			</div>
-			<section className='flex flex-row gap-5 flex-start flex-start min-h-screen'>
+			</header>
+			<section className='flex flex-row gap-5 flex-start flex-start w-full h-screen overflow-hidden '>
 				<Tasks setTasks={setTasks} tasks={tasks} />
 				<div className='border-r-4'></div>
 				<Controls />
