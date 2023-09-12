@@ -3,7 +3,8 @@ import { ITaskCardProps } from '../types'
 const Card: React.FC<ITaskCardProps> = ({
 	task,
 	checkedTask,
-	setCheckedTask
+	setCheckedTask,
+	handleDeleteTask
 }) => {
 	const { taskTitle, isCompleted, id, startTime, endTime, totalTime } = task
 	const trimmedTitle =
@@ -20,17 +21,27 @@ const Card: React.FC<ITaskCardProps> = ({
 				<p className='text-lg md:text-base leading-tight inline-block '>
 					{isCompleted ? 'Completed' : 'Not Completed'}
 				</p>
-				{!isCompleted && (
-					<input
-						id='start'
-						type='checkbox'
-						checked={checkedTask?.id === id}
-						onChange={() => {
-							setCheckedTask(task)
-						}}
-						className='inline-block ml-2 w-4 h-4 border border-gray-300 rounded-full bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-					/>
-				)}
+				<div>
+					{!isCompleted && (
+						<input
+							id='start'
+							type='checkbox'
+							checked={checkedTask?.id === id}
+							onChange={() => {
+								setCheckedTask(task)
+							}}
+							className='inline-block ml-2 w-4 h-4 border border-gray-300 rounded-full bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+						/>
+					)}
+					{isCompleted && (
+						<img
+							src={'../assets/delete.png'}
+							alt='Delete'
+							className='w-4 cursor-pointer inline-block ml-2'
+							onClick={() => handleDeleteTask(id)}
+						/>
+					)}
+				</div>
 			</div>
 			{startTime && (
 				<div className='p-3'>

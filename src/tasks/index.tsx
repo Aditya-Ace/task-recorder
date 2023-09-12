@@ -4,7 +4,8 @@ import Card from '../ui/Card'
 const Tasks: React.FC<ITaskProps> = ({
 	tasks,
 	checkedTask,
-	setCheckedTask
+	setCheckedTask,
+	handleDeleteTask
 }) => {
 	return (
 		<section className='text-white py-4 flex shadow-lg shadow-blue-500/50'>
@@ -18,6 +19,7 @@ const Tasks: React.FC<ITaskProps> = ({
 								task={task}
 								checkedTask={checkedTask}
 								setCheckedTask={setCheckedTask}
+								handleDeleteTask={handleDeleteTask}
 							/>
 						))}
 				</div>

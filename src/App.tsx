@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Header } from './components/Header'
-import {
-	getTasksFromLS,
-	saveTaskInLS,
-	updateTaskInLS
-} from './components/utils'
 import Controls from './controls'
 import Tasks from './tasks'
 import { ITaskState } from './types'
+import {
+	deleteTaskFromLS,
+	getTasksFromLS,
+	handleTotalTime,
+	saveTaskInLS,
+	updateTaskInLS
+} from './utils'
 
 function App() {
 	const [tasks, setTasks] = useState<ITaskState[]>([])
@@ -48,25 +50,9 @@ function App() {
 		}
 	}
 
-	const handleTotalTime = (startTime: Date, endTime: Date) => {
-		// Calculate the time difference in milliseconds
-		const timeDifference = endTime.getTime() - startTime.getTime()
-
-		// Convert the time difference to seconds
-		const totalSeconds = Math.floor(timeDifference / 1000)
-
-		// Calculate hours, minutes, and seconds from the totalSeconds
-		const hours = Math.floor(totalSeconds / 3600)
-		const remainingSeconds = totalSeconds % 3600
-		const minutes = Math.floor(remainingSeconds / 60)
-		const seconds = remainingSeconds % 60
-
-		// Return the total time taken as an object
-		return {
-			hours,
-			minutes,
-			seconds
-		}
+	const handleDeleteTask = (id: string) => {
+		setTasks((prev) => prev.filter((task) => task.id !== id))
+		deleteTaskFromLS(id)
 	}
 
 	const handleStopButtonClick = () => {
@@ -117,6 +103,7 @@ function App() {
 					tasks={tasks}
 					checkedTask={checkedTask}
 					setCheckedTask={setCheckedTask}
+					handleDeleteTask={handleDeleteTask}
 				/>
 				{tasks.length > 0 && (
 					<Controls

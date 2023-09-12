@@ -1,4 +1,4 @@
-import { ITaskState } from '../../types'
+import { ITaskState } from '../types'
 
 export const getTasksFromLS = (): ITaskState[] => {
 	const tasks = localStorage.getItem('tasks')
@@ -33,4 +33,18 @@ export const updateTaskInLS = (task: ITaskState) => {
 		tasks.push(task)
 	}
 	localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+export const handleTotalTime = (startTime: Date, endTime: Date) => {
+	const timeDifference = endTime.getTime() - startTime.getTime()
+	const totalSeconds = Math.floor(timeDifference / 1000)
+	const hours = Math.floor(totalSeconds / 3600)
+	const remainingSeconds = totalSeconds % 3600
+	const minutes = Math.floor(remainingSeconds / 60)
+	const seconds = remainingSeconds % 60
+	return {
+		hours,
+		minutes,
+		seconds
+	}
 }

@@ -11,12 +11,14 @@ export interface ITaskCardProps {
 	task: ITaskState
 	checkedTask: ITaskState | null
 	setCheckedTask: React.Dispatch<React.SetStateAction<ITaskState | null>>
+	handleDeleteTask: (id: string) => void
 }
 
 export interface ITaskProps {
 	tasks: ITaskState[]
 	checkedTask: ITaskState | null
 	setCheckedTask: React.Dispatch<React.SetStateAction<ITaskState | null>>
+	handleDeleteTask: (id: string) => void
 }
 
 export interface IHeaderProps {
